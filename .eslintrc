@@ -11,7 +11,7 @@
   "rules": {
     "strict":0,
     "no-unused-vars": 0,
-    "no-console": 1,
+    "no-console": 0,
     "semi": ["error", "always"],
     "allowImportExportEverywhere": false,
     "indent": "off",
@@ -22,7 +22,7 @@
         "objects": "never",
         "imports": "never",
         "exports": "never",
-        "functions": "ignore",
+        "functions": "ignore"
     }],
     "react/prop-types": [2]
   }
