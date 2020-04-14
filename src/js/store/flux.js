@@ -55,6 +55,28 @@ export const getState = ({ getStore, setStore }) => {
 						})
 						.catch(e => console.error(e));
 				});
+			},
+			editContact(id, name, address, phone, email) {
+				fetch(url + id, {
+					method: "PUT",
+					headers: { "Content-type": "application/json" },
+					body: JSON.stringify({
+						full_name: name,
+						phone: phone,
+						address: address,
+						email: email,
+						agenda_slug: "silver_agenda"
+					})
+				}).then(() => {
+					fetch(url + "agenda/silver_agenda")
+						.then(response => response.json())
+						.then(result => {
+							setStore({
+								contacts: result
+							});
+						})
+						.catch(e => console.error(e));
+				});
 			}
 		}
 	};

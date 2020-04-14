@@ -20,7 +20,10 @@ export const Contacts = props => {
 				</p>
 				<div id="contacts" className="panel-collapse collapse show" aria-expanded="true">
 					<ul className="list-group pull-down" id="contact-list">
-						<ContactCard onDelete={id => setState({ showModal: true, idOnDelete: id })} />
+						<ContactCard
+							onDelete={id => setState({ showModal: true, idOnDelete: id })}
+							onEdit={e => props.history.push(`/edit/${e}`)}
+						/>
 					</ul>
 				</div>
 			</div>

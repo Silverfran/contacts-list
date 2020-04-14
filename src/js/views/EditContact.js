@@ -3,17 +3,26 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import PropTypes from "prop-types";
 
-export const AddContact = props => {
-	const { actions } = useContext(Context);
-	const [name, setName] = useState("");
-	const [phone, setPhone] = useState("");
-	const [address, setAddress] = useState("");
-	const [email, setEmail] = useState("");
-	console.log(props);
+export const EditContact = props => {
+	let index = props.match.params.index;
+	console.log(index);
+	const { actions, store } = useContext(Context);
+
+	let contact = store.contacts[index];
+	console.log(contact);
+
+	const [name, setName] = useState(store.contacts[index].full_name);
+	const [phone, setPhone] = useState(store.contacts[index].phone);
+	const [address, setAddress] = useState(store.contacts[index].address);
+	const [email, setEmail] = useState(store.contacts[index].email);
+
+	console.log(store);
+	console.log(contact.name);
+
 	return (
 		<div className="container">
 			<div>
-				<h1 className="text-center mt-5">Add a new contact</h1>
+				<h1 className="text-center mt-5">Edit contact</h1>
 				<form>
 					<div className="form-group">
 						<label>Full Name</label>
@@ -32,6 +41,7 @@ export const AddContact = props => {
 							className="form-control"
 							placeholder="Enter email"
 							onChange={e => setEmail(e.target.value)}
+							value={email}
 						/>
 					</div>
 					<div className="form-group">
@@ -41,6 +51,7 @@ export const AddContact = props => {
 							className="form-control"
 							placeholder="Enter phone"
 							onChange={e => setPhone(e.target.value)}
+							value={phone}
 						/>
 					</div>
 					<div className="form-group">
@@ -50,13 +61,14 @@ export const AddContact = props => {
 							className="form-control"
 							placeholder="Enter address"
 							onChange={e => setAddress(e.target.value)}
+							value={address}
 						/>
 					</div>
 					<button
 						type="button"
 						className="btn btn-primary form-control"
 						onClick={() => {
-							actions.addContact(name, address, phone, email);
+							actions.editContact(store.contacts[index].id, name, address, phone, email);
 							props.history.push("/");
 						}}>
 						save
@@ -70,4 +82,4 @@ export const AddContact = props => {
 	);
 };
 
-AddContact.propTypes = { history: PropTypes.object };
+EditContact.propTypes = { history: PropTypes.object, match: PropTypes.object };
