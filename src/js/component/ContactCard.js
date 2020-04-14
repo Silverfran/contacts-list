@@ -9,8 +9,6 @@ export const ContactCard = props => {
 	});
 
 	const { store, actions } = useContext(Context);
-	console.log("Show Store", store.contacts);
-
 	return (
 		<div>
 			{store.contacts &&
@@ -30,7 +28,7 @@ export const ContactCard = props => {
 										<button className="btn">
 											<i className="fas fa-pencil-alt mr-3" />
 										</button>
-										<button className="btn" onClick={() => props.onDelete()}>
+										<button className="btn" onClick={() => props.onDelete(e.id)}>
 											<i className="fas fa-trash-alt" />
 										</button>
 									</div>
